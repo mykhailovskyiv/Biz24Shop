@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "image": "6800.jpg",
+    "name": "RX 6800",
+    "price": "30000",
+    "article": "V1",
+    "brand": "AMD",
+    "ram_size": 16,
+    "interface": "PCI Express 4.0"
+
+  },
+  {
+    "id": 2,
+    "image": "5700.jpg",
+    "name": "RX 5700",
+    "price": "20000",
+    "article": "V2",
+    "brand": "AMD",
+    "ram_size": 12,
+    "interface": "PCI Express 3.0"
+
+  },
+  {
+    "id": 3,
+    "image": "3070.jpg",
+    "name": "RTX 3070",
+    "price": "30000",
+    "article": "V3",
+    "brand": "Nvidia",
+    "ram_size": 8,
+    "interface": "PCI Express 4.0"
+
+
+  },
+  {
+    "id": 4,
+    "image": "2080.jpg",
+    "name": "RTX 2080",
+    "price": "25000",
+    "article": "V4",
+    "brand": "Nvidia",
+    "ram_size": 10,
+    "interface": "PCI Express 4.0"
+
+  },
+  {
+    "id": 5,
+    "image": "6800.jpg",
+    "name": "RX 6900",
+    "price": "30000",
+    "article": "V5",
+    "brand": "AMD",
+    "ram_size": 16,
+    "interface": "PCI Express 4.0"
+  }
+]
