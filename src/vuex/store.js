@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import products from '../products.json'
-// import axios from 'axios'
 
 Vue.use(Vuex)
 

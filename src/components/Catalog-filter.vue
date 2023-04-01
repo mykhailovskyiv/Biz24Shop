@@ -1,12 +1,12 @@
 <template>
   <div>
-    <label>Brand</label>
+    <label>Brand </label>
     <select v-model="filters.brand" @change="updateFilter('brand', $event.target.value)">
       <option value="">All</option>
       <option v-for="brand in uniqueValues('brand')" :key="brand.index" :value="brand">{{ brand }}</option>
     </select>
 
-    <label>RAM Size</label>
+    <label>RAM Size </label>
     <select v-model="filters.ram_size" @change="updateFilter('ram_size', $event.target.value)">
       <option value="">All</option>
       <option v-for="ram_size in uniqueValues('ram_size')" :key="ram_size.index" :value="ram_size">{{ ram_size }} GB</option>
@@ -41,13 +41,13 @@ export default {
     if (ram_size) {
       this.filters.ram_size = ram_size
     }
+    this.ADD_FILTERS(this.filters)
   },
   methods: {
     ...mapActions(["ADD_FILTERS"]),
     updateFilter(property, value) {
       this.filters[property] = value
       this.ADD_FILTERS(this.filters)
-      // this.$emit('updateFilter', property, value)
       const queryParams = { ...this.$route.query }
       queryParams[property] = value
       this.$router.push({ path: '/catalog', query: queryParams })
