@@ -10,7 +10,11 @@ let store = new Vuex.Store({
     state: {
         products: products,
         cart: [],
-        product: null
+        product: null,
+        filters: {
+            brand: '',
+            ram_size: '',
+        }
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -25,17 +29,15 @@ let store = new Vuex.Store({
                 }
             })
             isProductExist || state.cart.push({ ...product, quantity: 1 })
-            /*
-             * в данной строке мы сразу ставим quantity:1 для любого нового товара в корзине,
-             * компоненты получают его сразу в пропсах
-             */
         },
         REMOVE_FROM_CART: (state, index) => {
             state.cart.splice(index, 1)
         },
         SET_SELECTED_PRODUCT(state, product) {
             state.product = product;
-            console.log(product)
+        },
+        SET_FILTERS(state, value) {
+            state.filters = value
         },
         INCREMENT: (state, index) => {
             state.cart[index].quantity++
@@ -59,10 +61,12 @@ let store = new Vuex.Store({
             commit('SET_SELECTED_PRODUCT', product);
             console.log(this.state.products)
         },
+        ADD_FILTERS({ commit }, value) {
+            commit('SET_FILTERS',  value);
+        },
         ADD_TO_CART({ commit }, product) {
             commit('SET_CART', product)
         },
-
         DELETE_FROM_CART({ commit }, index) {
             commit('REMOVE_FROM_CART', index)
         },
@@ -82,6 +86,9 @@ let store = new Vuex.Store({
         },
         CART(state) {
             return state.cart
+        },
+        FILTERS(state) {
+            return state.filters
         }
     }
 });

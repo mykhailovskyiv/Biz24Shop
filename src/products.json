@@ -17,7 +17,7 @@
     "price": "20000",
     "article": "V2",
     "brand": "AMD",
-    "ram_size": 12,
+    "ram_size": 8,
     "interface": "PCI Express 3.0"
 
   },
@@ -52,6 +52,26 @@
     "article": "V5",
     "brand": "AMD",
     "ram_size": 16,
+    "interface": "PCI Express 4.0"
+  },
+  {
+    "id": 6,
+    "image": "6800.jpg",
+    "name": "RX 6700",
+    "price": "25000",
+    "article": "V6",
+    "brand": "AMD",
+    "ram_size": 12,
+    "interface": "PCI Express 4.0"
+  },
+  {
+    "id": 6,
+    "image": "3070.jpg",
+    "name": "RTX 3060",
+    "price": "22000",
+    "article": "V7",
+    "brand": "AMD",
+    "ram_size": 12,
     "interface": "PCI Express 4.0"
   }
 ]

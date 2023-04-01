@@ -9,6 +9,10 @@ Vue.use(Router)
 const routes = [
     {
         path: '/',
+        redirect: '/catalog'
+    },
+    {
+        path: '/catalog',
         name: 'catalog',
         component: Catalog
     },
@@ -19,7 +23,7 @@ const routes = [
         props: true
     },
     {
-        path: '/Cart',
+        path: '/cart',
         name: 'cart',
         component: Cart,
         props: true,

@@ -5,9 +5,10 @@
     </router-link>
     <h1 class="title">Catalog</h1>
     <h3 class="sub-title">For gamers only</h3>
+    <catalog-filter :products="PRODUCTS"/>
     <div class="catalog-row">
       <catalogItem
-        v-for="product in PRODUCTS"
+        v-for="product in filteredProducts"
         :key="product.article"
         :productData="product"
         @addToCart="addToCart"
@@ -18,14 +19,24 @@
 
 <script>
 import catalogItem from "./Catalog-item";
+import catalogFilter from "./Catalog-filter"
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Catalog",
   components: {
     catalogItem,
+    catalogFilter
   },
   computed: {
-    ...mapGetters(["CART", "PRODUCTS"]),
+    ...mapGetters(["CART", "PRODUCTS", "FILTERS"]),
+    filteredProducts() {
+      return this.PRODUCTS.filter(product => {
+        const brandFilter = !this.FILTERS.brand || product.brand === this.FILTERS.brand;
+        const ramSizeFilter = !this.FILTERS.ram_size || product.ram_size === parseFloat(this.FILTERS.ram_size);
+        console.log(product.ram_size, this.FILTERS.ram_size)
+        return brandFilter && ramSizeFilter
+      });
+    }
   },
   methods: {
     ...mapActions(["ADD_PRODUCTS", "ADD_TO_CART"]),
@@ -46,6 +57,7 @@ export default {
   &-row {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
   }
   &__link_to_cart {
     position: fixed;
