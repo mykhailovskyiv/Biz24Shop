@@ -1,5 +1,6 @@
 <template>
   <div class="catalog">
+    <Notification v-if="NOTIFICATION"></Notification>
     <router-link :to="{ name: 'cart' }">
       <div class="catalog__link_to_cart">Cart:{{ CART.length }}</div>
     </router-link>
@@ -21,17 +22,19 @@
 </template>
 
 <script>
-import catalogItem from "./Catalog-item";
-import catalogFilter from "./Catalog-filter"
+import CatalogItem from "./Catalog-item";
+import CatalogFilter from "./Catalog-filter"
+import Notification from "./Notification";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Catalog",
   components: {
-    catalogItem,
-    catalogFilter
+    CatalogItem,
+    CatalogFilter,
+    Notification
   },
   computed: {
-    ...mapGetters(["CART", "PRODUCTS", "FILTERS"]),
+    ...mapGetters(["CART", "PRODUCTS", "FILTERS", "NOTIFICATION"]),
     filteredProducts() {
       return this.PRODUCTS.filter(product => {
         const brandFilter = !this.FILTERS.brand || product.brand === this.FILTERS.brand;

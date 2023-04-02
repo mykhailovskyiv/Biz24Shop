@@ -28,10 +28,6 @@ export default {
   components: {
     cartItem,
   },
-  data() {
-    return {};
-  },
-  mounted() {},
   methods: {
     ...mapActions([
       "DELETE_FROM_CART",

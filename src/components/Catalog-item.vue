@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Catalog-item",
   components: {},
@@ -26,8 +28,11 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["ADD_TO_CART","UPDATE_NOTIFICATION"]),
+
     addToCart() {
-      this.$emit("addToCart", this.productData);
+      this.ADD_TO_CART(this.productData);
+      this.UPDATE_NOTIFICATION(true)
     },
   },
 };

@@ -14,7 +14,8 @@ let store = new Vuex.Store({
             brand: '',
             ram_size: '',
             price: 0,
-        }
+        },
+        notification: false
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -38,7 +39,6 @@ let store = new Vuex.Store({
         },
         SET_FILTERS(state, value) {
             state.filters = value
-            console.log(value)
         },
         INCREMENT: (state, index) => {
             state.cart[index].quantity++
@@ -47,7 +47,13 @@ let store = new Vuex.Store({
             if (state.cart[index].quantity > 1) {
                 state.cart[index].quantity--
             }
-        }
+        },
+        SET_NOTIFICATION: (state, data) => {
+            state.notification = data
+            setTimeout(function (){
+                state.notification = false
+            },3000)
+        },
 
     },
     actions: {
@@ -75,7 +81,11 @@ let store = new Vuex.Store({
         },
         DECREMENT_CART_ITEM({ commit }, index) {
             commit('DECREMENT', index)
-        }
+        },
+        UPDATE_NOTIFICATION({commit}, data) {
+            console.log(data)
+            commit('SET_NOTIFICATION', data)
+        },
     },
     getters: {
         PRODUCTS(state) {
@@ -89,6 +99,9 @@ let store = new Vuex.Store({
         },
         FILTERS(state) {
             return state.filters
+        },
+        NOTIFICATION(state) {
+            return state.notification
         }
     }
 });

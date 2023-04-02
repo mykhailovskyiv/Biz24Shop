@@ -28,9 +28,11 @@ export default {
     this.ADD_SELECTED_PRODUCT_BY_ID(productId)
   },
   methods: {
-    ...mapActions(["ADD_SELECTED_PRODUCT_BY_ID", "ADD_TO_CART"]),
+    ...mapActions(["ADD_SELECTED_PRODUCT_BY_ID", "ADD_TO_CART", "UPDATE_NOTIFICATION"]),
     addToCart() {
       this.ADD_TO_CART(this.PRODUCT);
+      this.UPDATE_NOTIFICATION(true)
+
     },
   },
   computed: {

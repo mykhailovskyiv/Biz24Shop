@@ -2,9 +2,9 @@
   <div class="cart-item">
     <img :src="require('../assets/img/' + cart_item_data.image)" alt="img" />
     <div class="cart-item__info">
+      <p>{{ cart_item_data.brand }}</p>
       <p>{{ cart_item_data.name }}</p>
-      <p>{{ cart_item_data.price }}</p>
-      <p>{{ cart_item_data.article }}</p>
+      <p>{{ cart_item_data.price }} UAH</p>
     </div>
     <div class="cart_item__quantity">
       <p>Qty.</p>
