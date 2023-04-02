@@ -4,12 +4,12 @@
         :to="{ name: 'product', params: {id: productData.id}}"
         class="catalog-item__container">
       <img :src="require('../assets/img/' + productData.image)" alt="img" />
-      <p class="catalog-item-name">{{ productData.name }}</p>
-      <p class="catalog-item-name">Brand: {{ productData.brand }}</p>
-      <p class="catalog-item-name">Video memory size: {{ productData.ram_size }} GB</p>
-      <p class="catalog-item-price">Price: {{ productData.price }} UAH</p>
+      <p class="catalog-item__name">{{ productData.name }}</p>
+      <p class="catalog-item__name">Brand: {{ productData.brand }}</p>
+      <p class="catalog-item__name">Video memory size: {{ productData.ram_size }} GB</p>
+      <p class="catalog-item__price">Price: {{ productData.price }} UAH</p>
     </router-link>
-    <button class="catalog-item-button" @click="addToCart">Add to cart</button>
+    <button class="catalog-item__button" @click="addToCart">Add to cart</button>
   </div>
 </template>
 
@@ -26,9 +26,6 @@ export default {
     },
   },
   methods: {
-    // selectProduct() {
-    //   this.$store.dispatch('ADD_SELECTED_PRODUCT', this.productData);
-    // },
     addToCart() {
       this.$emit("addToCart", this.productData);
     },
@@ -49,6 +46,10 @@ export default {
   box-shadow: 5px 5px 10px 5px#0000004a;
   transition-property: box-shadow;
   transition-duration: 0.5s;
+  a {
+    color: black;
+    text-decoration: none;
+  }
   &:hover {
     box-shadow: 20px 20px 30px 20px#0000004a;
     transition-duration: 0.5s;
@@ -62,11 +63,10 @@ export default {
     width: auto;
     height: 150px;
   }
-
-  .catalog-item-title {
+  &__title {
     color: red;
   }
-  .catalog-item-button {
+  &__button {
     border: 1px solid #1b1b20;
     background-color: white;
     transition-duration: 0.5s;
@@ -87,13 +87,19 @@ export default {
     height: 401px;
     margin: 20px 0 20px 35px;
     img {
-      width: 250px;
+      width: 220px;
     }
   }
 }
 @media (max-width: 767px) {
   .catalog-item {
     width: 85%;
+  }
+}
+@media (max-width: 425px) {
+  .catalog-item {
+    width: 100%;
+    margin: 20px 0 20px 0;
   }
 }
 </style>

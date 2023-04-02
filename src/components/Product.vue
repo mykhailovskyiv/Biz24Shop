@@ -1,49 +1,55 @@
 <template>
-  <div class="catalog-item">
-    <img :src="require('../assets/img/' + product.image)" alt="img" />
-    <p class="catalog-item-name">{{ product.name }}</p>
-    <p class="catalog-item-name">Brand: {{ product.brand }}</p>
-    <p class="catalog-item-name">Video memory size: {{ product.ram_size }} GB</p>
-    <p class="catalog-item-price">Price: {{ product.price }} UAH</p>
-    <button class="catalog-item-button" @click="addToCart">Add to cart</button>
+  <div class="container">
+    <router-link :to="{ name: 'catalog' }">
+      <div class="cart__link_to_catalog">Back to Catalog</div>
+    </router-link>
+    <router-link :to="{ name: 'cart' }">
+      <div class="catalog__link_to_cart">Cart:{{ CART.length }}</div>
+    </router-link>
+    <div class="catalog-item">
+      <img :src="require('../assets/img/' + PRODUCT.image)" alt="img" />
+      <p class="catalog-item__name">{{ PRODUCT.name }}</p>
+      <p class="catalog-item__name">Brand: {{ PRODUCT.brand }}</p>
+      <p class="catalog-item__name">Video memory size: {{ PRODUCT.ram_size }} GB</p>
+      <p class="catalog-item__price">Price: {{ PRODUCT.price }} UAH</p>
+      <button class="catalog-item__button" @click="addToCart">Add to cart</button>
+    </div>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapActions} from "vuex";
+
 export default {
   name: "product",
   components: {},
-  data() {
-    return {
-    };
-  },
   created() {
     const productId = this.$route.params.id;
-    this.$store.dispatch('ADD_SELECTED_PRODUCT_BY_ID', productId);
+    this.ADD_SELECTED_PRODUCT_BY_ID(productId)
   },
   methods: {
+    ...mapActions(["ADD_SELECTED_PRODUCT_BY_ID", "ADD_TO_CART"]),
     addToCart() {
-      this.$emit("addToCart", this.productData);
+      this.ADD_TO_CART(this.PRODUCT);
     },
   },
   computed: {
-    product() {
-      return this.$store.getters.PRODUCT;
-    },
+    ...mapGetters(["CART", "PRODUCT" ]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.container {
+  width: 100%;
+}
 .catalog-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   justify-content: center;
-  width: 29%;
-  height: 513px;
   padding: 10px 0;
-  margin: 20px 0 20px 50px;
 
   box-shadow: 5px 5px 10px 5px#0000004a;
   transition-property: box-shadow;
@@ -54,18 +60,17 @@ export default {
   }
   img {
     width: auto;
-    height: 150px;
+    height: 250px;
   }
-
-  .catalog-item-title {
+  &__title {
     color: red;
   }
-  .catalog-item-button {
+  &__button {
     border: 1px solid #1b1b20;
     background-color: white;
     transition-duration: 0.5s;
     height: 40px;
-    width: 80%;
+    width: 200px;
     border-radius: 5px;
     cursor: pointer;
     &:hover {
@@ -75,11 +80,11 @@ export default {
     }
   }
 }
+.cart__link_to_catalog {
+  right: 100px;
+}
 @media (max-width: 1279px) {
   .catalog-item {
-    width: 43%;
-    height: 401px;
-    margin: 20px 0 20px 35px;
     img {
       width: 250px;
     }

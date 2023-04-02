@@ -13,6 +13,7 @@ let store = new Vuex.Store({
         filters: {
             brand: '',
             ram_size: '',
+            price: 0,
         }
     },
     mutations: {
@@ -37,6 +38,7 @@ let store = new Vuex.Store({
         },
         SET_FILTERS(state, value) {
             state.filters = value
+            console.log(value)
         },
         INCREMENT: (state, index) => {
             state.cart[index].quantity++
@@ -58,7 +60,6 @@ let store = new Vuex.Store({
         ADD_SELECTED_PRODUCT_BY_ID({ commit, state }, productId) {
             const product = state.products.find(p => p.id === parseInt(productId));
             commit('SET_SELECTED_PRODUCT', product);
-            console.log(this.state.products)
         },
         ADD_FILTERS({ commit }, value) {
             commit('SET_FILTERS',  value);

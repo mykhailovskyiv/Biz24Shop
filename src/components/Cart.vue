@@ -4,9 +4,9 @@
       <div class="cart__link_to_catalog">Back to Catalog</div>
     </router-link>
     <h1>Cart</h1>
-    <p v-if="!cart_data.length">Thre are not product in cart...</p>
+    <p v-if="!CART.length">Thre are not product in cart...</p>
     <cartItem
-      v-for="(item, index) in cart_data"
+      v-for="(item, index) in CART"
       :key="item.article"
       :cart_item_data="item"
       @deleteFromCart="deleteFromCart(index)"
@@ -22,19 +22,11 @@
 
 <script>
 import cartItem from "./Cart-item";
-import { mapActions } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: "Cart",
   components: {
     cartItem,
-  },
-  props: {
-    cart_data: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
   },
   data() {
     return {};
@@ -58,10 +50,11 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["CART"]),
     cartTotalCost() {
       let result = [];
-      if (this.cart_data.length) {
-        for (let item of this.cart_data) {
+      if (this.CART.length) {
+        for (let item of this.CART) {
           result.push(item.price * item.quantity);
         }
         result = result.reduce(function (sum, el) {

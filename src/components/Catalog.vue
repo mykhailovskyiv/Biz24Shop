@@ -1,6 +1,6 @@
 <template>
   <div class="catalog">
-    <router-link :to="{ name: 'cart', params: { cart_data: CART } }">
+    <router-link :to="{ name: 'cart' }">
       <div class="catalog__link_to_cart">Cart:{{ CART.length }}</div>
     </router-link>
     <h1 class="title">Catalog</h1>
@@ -13,6 +13,9 @@
         :productData="product"
         @addToCart="addToCart"
       />
+    </div>
+    <div v-if="!filteredProducts.length">
+      <h4>Unfortunately, we could not find any products according to your categories.</h4>
     </div>
   </div>
 </template>
@@ -33,8 +36,9 @@ export default {
       return this.PRODUCTS.filter(product => {
         const brandFilter = !this.FILTERS.brand || product.brand === this.FILTERS.brand;
         const ramSizeFilter = !this.FILTERS.ram_size || product.ram_size === parseFloat(this.FILTERS.ram_size);
-        console.log(product.ram_size, this.FILTERS.ram_size)
-        return brandFilter && ramSizeFilter
+        const priceFilter = !this.FILTERS.price || product.price >= this.FILTERS.price;
+        console.log(product.price >= this.FILTERS.price)
+        return brandFilter && ramSizeFilter && priceFilter
       });
     }
   },
