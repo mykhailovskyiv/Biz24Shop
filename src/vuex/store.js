@@ -83,7 +83,6 @@ let store = new Vuex.Store({
             commit('DECREMENT', index)
         },
         UPDATE_NOTIFICATION({commit}, data) {
-            console.log(data)
             commit('SET_NOTIFICATION', data)
         },
     },

@@ -72,7 +72,7 @@ export default {
       this.ADD_FILTERS(this.filters)
       const queryParams = { ...this.$route.query }
       queryParams[property] = value
-      this.$router.push({ path: '/catalog', query: queryParams })
+      this.$router.push({ path: '/', query: queryParams })
     },
     uniqueValues(property) {
       return this.products.reduce((uniqueValues, product) => {

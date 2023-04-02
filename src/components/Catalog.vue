@@ -40,7 +40,6 @@ export default {
         const brandFilter = !this.FILTERS.brand || product.brand === this.FILTERS.brand;
         const ramSizeFilter = !this.FILTERS.ram_size || product.ram_size === parseFloat(this.FILTERS.ram_size);
         const priceFilter = !this.FILTERS.price || product.price >= this.FILTERS.price;
-        console.log(product.price >= this.FILTERS.price)
         return brandFilter && ramSizeFilter && priceFilter
       });
     }

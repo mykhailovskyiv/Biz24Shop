@@ -7,12 +7,12 @@ import Cart from '../components/Cart'
 Vue.use(Router)
 
 const routes = [
+    // {
+    //     path: '/',
+    //     redirect: '/catalog'
+    // },
     {
         path: '/',
-        redirect: '/catalog'
-    },
-    {
-        path: '/catalog',
         name: 'catalog',
         component: Catalog
     },
